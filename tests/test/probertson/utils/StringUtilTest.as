@@ -96,6 +96,21 @@ package test.probertson.utils
 			Assert.assertFalse(_instance.isNumeric("1a"));
 		}
 		
+		
+		[Test]
+		public function test_isNumeric_leading_zero():void
+		{
+			Assert.assertTrue(_instance.isNumeric("001"));
+		}
+		
+		
+		[Test]
+		public function test_isNumeric_leading_following_zero():void
+		{
+			Assert.assertTrue(_instance.isNumeric("010"));
+		}
+		
+		
 		[Test]
 		public function test_isNumeric_null():void
 		{
@@ -224,6 +239,47 @@ package test.probertson.utils
 			Assert.assertEquals("z20", list[3]);
 			Assert.assertEquals("z100", list[4]);
 		}
+		
+		
+		[Test]
+		public function test_sortAlphaNumeric_alpha_numeric_leading_zeros():void
+		{
+			var list:Vector.<String> = new Vector.<String>();
+			list[list.length] = "z100";
+			list[list.length] = "z020";
+			list[list.length] = "z002";
+			list[list.length] = "z010";
+			list[list.length] = "z001";
+			
+			list = list.sort(_instance.sortAlphaNumeric);
+			
+			Assert.assertEquals("z001", list[0]);
+			Assert.assertEquals("z002", list[1]);
+			Assert.assertEquals("z010", list[2]);
+			Assert.assertEquals("z020", list[3]);
+			Assert.assertEquals("z100", list[4]);
+		}
+		
+		
+		[Test]
+		public function test_sortAlphaNumeric_alpha_numeric_leading_zeros_mixed_length():void
+		{
+			var list:Vector.<String> = new Vector.<String>();
+			list[list.length] = "z100";
+			list[list.length] = "z20";
+			list[list.length] = "z02";
+			list[list.length] = "z010";
+			list[list.length] = "z001";
+			
+			list = list.sort(_instance.sortAlphaNumeric);
+			
+			Assert.assertEquals("z001", list[0]);
+			Assert.assertEquals("z02", list[1]);
+			Assert.assertEquals("z010", list[2]);
+			Assert.assertEquals("z20", list[3]);
+			Assert.assertEquals("z100", list[4]);
+		}
+		
 		
 		[Test]
 		public function test_sortAlphaNumeric_alpha_numeric_mixed():void

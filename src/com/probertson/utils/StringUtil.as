@@ -6,7 +6,15 @@ package com.probertson.utils
 		
 		public function isNumeric(str:String):Boolean
 		{
+			if (str == null)
+				return false;
+			
 			var n:Number = parseFloat(str);
+			while (str.charAt(0) == "0" && str.length > 1)
+			{
+				str = str.substr(1);
+			}
+			
 			return (n.toString() == str);
 		}
 		
