@@ -34,6 +34,13 @@ profile
 **/.settings
 
 ####
+# FlexUnit
+####
+/.FlexUnitSettings
+*/FlexUnitApplication.mxml
+*/FlexUnitApplication-app.xml
+
+####
 # FlashDevelop
 ####
 
