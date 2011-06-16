@@ -113,6 +113,23 @@ package test.probertson.utils
 		}
 		
 		
+		[Test]
+		public function test_WithAnExistingFileAndTwoCustomSeparators_getFileWithUniqueName_returnsAFileWithNamePlusCustomSeparatorPlus1PlusCustomSeparator():void
+		{
+			var fileName:String = "testFile";
+			var extension:String = ".txt";
+			var separator:String = "(";
+			var separator2:String = ")";
+			var originalFile:File = _directory.resolvePath(fileName + extension);
+			
+			_createFile(originalFile);
+			
+			var testFile:File = _instance.getFileWithUniqueName(originalFile, separator, separator2);
+			
+			assertEquals(fileName + separator + "1" + separator2 + extension, testFile.name);
+		}
+		
+		
 		private function _createFile(file:File):void
 		{
 			var fileStream:FileStream = new FileStream();

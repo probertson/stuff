@@ -35,7 +35,7 @@ package com.probertson.utils
 		 *   <li>".___" (a period and the original extension from the file)</li>
 		 * </ol>
 		 */
-		public function getFileWithUniqueName(targetFile:File, separatorText:String="_"):File
+		public function getFileWithUniqueName(targetFile:File, preSeparatorText:String="_", postSeparatorText:String=""):File
 		{
 			var result:File = targetFile;
 			
@@ -55,11 +55,11 @@ package com.probertson.utils
 				fileNameMinusExtension = name;
 			}
 			
-			var suffix:int = 0;
+			var number:int = 0;
 			while (result.exists)
 			{
-				suffix += 1;
-				result = result.parent.resolvePath(fileNameMinusExtension + separatorText + suffix.toString() + dot + extension);
+				number += 1;
+				result = result.parent.resolvePath(fileNameMinusExtension + preSeparatorText + number.toString() + postSeparatorText + dot + extension);
 			}
 			
 			return result;
